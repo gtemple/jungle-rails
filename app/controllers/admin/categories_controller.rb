@@ -1,7 +1,7 @@
 class Admin::CategoriesController < ApplicationController
+
   def index
     @categories = Category.order(id: :desc).all
-
   end
 
   def new
@@ -16,4 +16,6 @@ class Admin::CategoriesController < ApplicationController
     else
       render :new
     end
+  end
+
 end
