@@ -34,9 +34,33 @@ RSpec.describe Product, type: :model do
         description: "hello",
         quantity: 23,
         category: @category,
-        price: nil
+        price_cents: nil
       })
       expect(@product).to_not be_valid
     end
+
+    it "is not valid without a quantity" do
+      @category = Category.new
+      @product = Product.new({
+        name:  "Gio",
+        description: "hello",
+        quantity: nil,
+        category: @category,
+        price: 100.00
+      })
+      expect(@product).to_not be_valid
+    end
+
+    it "is not valid without a category" do
+      @product = Product.new({
+        name:  "Gio",
+        description: "hello",
+        quantity: 22,
+        category: nil,
+        price: 100.00
+      })
+      expect(@product).to_not be_valid
+    end
+    
   end
 end
