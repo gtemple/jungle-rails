@@ -26,5 +26,17 @@ RSpec.describe Product, type: :model do
       })
       expect(@product).to_not be_valid
     end
+
+    it "is not valid without a price" do
+      @category = Category.new
+      @product = Product.new({
+        name:  "Gio",
+        description: "hello",
+        quantity: 23,
+        category: @category,
+        price: nil
+      })
+      expect(@product).to_not be_valid
+    end
   end
 end
