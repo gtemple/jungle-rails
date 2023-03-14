@@ -34,4 +34,18 @@ RSpec.describe User, type: :model do
       expect(User.find_by(id: 2)).to be_nil
     end
   end
+
+  describe '.authenticate_with_credentials' do
+    it 'Logs in user with extra spaces' do
+      @user2 = User.new({ first_name: "Giordano",
+        last_name: "Temple",
+        email: "gio2@email.com",
+        password: "abc123",
+        password_confirmation: "abc123"
+        })
+      @user2.save
+      @user2_login = @user2.authenticate_with_credentials(" gio2@email.com ", @user2.password)
+      expect(user_login).not_to be_nil
+    end
+  end
 end
